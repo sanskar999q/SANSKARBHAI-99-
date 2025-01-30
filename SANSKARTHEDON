@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>91 Club Game</title>
+  <style>
+    /* Add your styles here */
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <!-- Header -->
+    <header>
+      <h1>91 Club Game</h1>
+    </header>
+
+    <!-- Wallet and Timer Section -->
+    <section class="info-section">
+      <div class="wallet">
+        Wallet Balance: ₹<span id="wallet-balance">1000.00</span>
+      </div>
+      <div class="timer">
+        Period: <span id="period-number">1</span> | Time Left: <span id="timer">10</span>s
+      </div>
+    </section>
+
+    <!-- Betting Options -->
+    <section class="betting-section">
+      <h2>Bet on Big or Small</h2>
+      <div class="bet-buttons">
+        <button id="big-bet" onclick="placeBet('Big')">Big</button>
+        <button id="small-bet" onclick="placeBet('Small')">Small</button>
+      </div>
+    </section>
+
+    <!-- Color Betting -->
+    <section class="color-betting">
+      <h2>Bet on Color</h2>
+      <div class="color-buttons">
+        <button id="green-bet" onclick="placeColorBet('Green')">Green</button>
+        <button id="violet-bet" onclick="placeColorBet('Violet')">Violet</button>
+        <button id="red-bet" onclick="placeColorBet('Red')">Red</button>
+      </div>
+    </section>
+
+    <!-- Game History -->
+    <section class="history-section">
+      <h2>Game History</h2>
+      <div id="history-container">
+        <p>No game history yet.</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Connect to Socket.io
+    const socket = io.connect("http://localhost:3000");
+
+    socket.on("update", function(data) {
+      document.getElementById("wallet-balance").innerText = data.walletBalance.toFixed(2);
+      document.getElementById("period-number").innerText = data.period;
+      document.getElementById("timer").innerText = data.timer;
+    });
+
+    function placeBet(type) {
+      // Place bet logic (same as before)
+    }
+
+    function placeColorBet(color) {
+      // Place color bet logic (same as before)
+    }
+  </script>
+</body>
+</html>
